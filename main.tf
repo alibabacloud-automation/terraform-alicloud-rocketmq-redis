@@ -8,7 +8,6 @@ resource "alicloud_ons_topic" "default" {
   instance_id  = alicloud_ons_instance.default.id
   message_type = var.message_type
   remark       = var.ons_topic_remark
-  perm         = var.ons_topic_perm
 }
 
 resource "alicloud_kvstore_instance" "default" {

@@ -3,7 +3,6 @@ ons_instance_name   = "update-tf-ons-instance-name"
 ons_instance_remark = "update-tf-ons-instance-remark"
 
 #alicloud_ons_topic
-ons_topic_perm = 6
 
 #alicloud_kvstore_instance
 redis_instance_name          = "update-tf-redis-instance-name"

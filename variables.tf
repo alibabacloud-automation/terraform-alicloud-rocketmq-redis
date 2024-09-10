@@ -30,12 +30,6 @@ variable "ons_topic_remark" {
   default     = ""
 }
 
-variable "ons_topic_perm" {
-  description = "This attribute is used to set the read-write mode for the topic."
-  type        = number
-  default     = "2"
-}
-
 #alicloud_kvstore_instance
 variable "redis_instance_name" {
   description = "The specification of the redis instance name."
