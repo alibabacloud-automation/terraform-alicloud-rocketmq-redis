@@ -16,18 +16,22 @@ module "vpc" {
   availability_zones = [data.alicloud_zones.default.zones.0.id]
 }
 
+resource "random_integer" "default" {
+  min = 10000
+  max = 99999
+}
+
 module "example" {
   source = "../.."
 
   #alicloud_ons_instance
-  ons_instance_name   = var.ons_instance_name
+  ons_instance_name   = "${var.ons_instance_name}-${random_integer.default.result}"
   ons_instance_remark = var.ons_instance_remark
 
   #alicloud_ons_topic
   topic            = "tf-topic-name"
   message_type     = 0
   ons_topic_remark = "tf-topic-remark"
-  ons_topic_perm   = var.ons_topic_perm
 
   #alicloud_kvstore_instance
   redis_instance_name          = var.redis_instance_name

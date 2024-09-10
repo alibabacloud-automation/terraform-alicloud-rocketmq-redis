@@ -12,11 +12,6 @@ variable "ons_instance_remark" {
 }
 
 #alicloud_ons_topic
-variable "ons_topic_perm" {
-  description = "This attribute is used to set the read-write mode for the topic."
-  type        = number
-  default     = "2"
-}
 
 #alicloud_kvstore_instance
 variable "redis_instance_name" {
