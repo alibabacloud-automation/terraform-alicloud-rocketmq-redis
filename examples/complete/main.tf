@@ -3,17 +3,19 @@ data "alicloud_zones" "default" {
 }
 
 data "alicloud_kvstore_instance_classes" "default" {
-  zone_id        = data.alicloud_zones.default.zones.0.id
+  zone_id        = data.alicloud_zones.default.zones[0].id
   engine         = "Redis"
   engine_version = var.redis_engine_version
 }
 
 module "vpc" {
-  source             = "alibaba/vpc/alicloud"
+  source  = "alibaba/vpc/alicloud"
+  version = "~>1.11"
+
   create             = true
   vpc_cidr           = "172.16.0.0/16"
   vswitch_cidrs      = ["172.16.0.0/21"]
-  availability_zones = [data.alicloud_zones.default.zones.0.id]
+  availability_zones = [data.alicloud_zones.default.zones[0].id]
 }
 
 resource "random_integer" "default" {
@@ -35,8 +37,8 @@ module "example" {
 
   #alicloud_kvstore_instance
   redis_instance_name          = var.redis_instance_name
-  redis_instance_class         = data.alicloud_kvstore_instance_classes.default.instance_classes.0
-  zone_id                      = data.alicloud_zones.default.zones.0.id
+  redis_instance_class         = data.alicloud_kvstore_instance_classes.default.instance_classes[0]
+  zone_id                      = data.alicloud_zones.default.zones[0].id
   vswitch_id                   = module.vpc.this_vswitch_ids[0]
   security_ips                 = var.security_ips
   redis_instance_type          = "Redis"
